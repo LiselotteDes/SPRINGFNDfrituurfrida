@@ -2,16 +2,18 @@ package be.vdab.frituurfrida.web;
 
 import java.time.LocalDate;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 @RequestMapping("/")
 class IndexController {
 	@GetMapping
-	String index() {
+	ModelAndView index() {
 		int dag = LocalDate.now().getDayOfWeek().getValue();
-		return (dag == 1 || dag == 4) ? "gesloten" : "open";
+		String sluitingsdag = (dag == 1 || dag == 4) ? "gesloten" : "open";
+		return new ModelAndView("index", "sluitingsdag", sluitingsdag);
 	}
 }
