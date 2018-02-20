@@ -14,5 +14,6 @@
 <body>
 	<h1>Frituur Frida</h1>
 	<h2>Vandaag zijn we ${sluitingsdag}</h2>
+	<img src="images/${sluitingsdag}.png" alt="${sluitingsdag}">
 </body>
 </html>
