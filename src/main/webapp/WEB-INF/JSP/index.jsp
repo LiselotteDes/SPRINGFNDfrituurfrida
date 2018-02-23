@@ -2,14 +2,13 @@
 		 contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"
 		 session="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang='nl'>
 <head>
-<meta charset="UTF-8">
-<title>Frituur Frida</title>
-<link rel="icon" href="images/frida.ico" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/frituurfrida.css">
+	<c:import url="/WEB-INF/JSP/head.jsp">
+		<c:param name="title" value="Frituur Frida"/>
+	</c:import>
 </head>
 <body>
 	<h1>Frituur Frida</h1>
