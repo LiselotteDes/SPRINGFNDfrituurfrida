@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,6 +14,13 @@ import org.springframework.stereotype.Repository;
 import be.vdab.frituurfrida.entities.Saus;
 import be.vdab.frituurfrida.exceptions.SausRepositoryException;
 
+/*
+ * Repository is (als speciale Component) niet fout, maar heeft niet zo veel nut.
+ * In classes die een db aanspreken heeft dit wel nut, door de vertaalslag van 
+ * opgeworpen JDBC exceptions.
+ * Hier wordt geen db benaderd maar een csv-bestand.
+ * Het mag echter blijven staan.
+ */
 @Repository
 class CSVSausRepository implements SausRepository {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SausRepository.class);
@@ -24,19 +30,33 @@ class CSVSausRepository implements SausRepository {
 		List<Saus> sauzen = new ArrayList<>();
 		try (BufferedReader reader = Files.newBufferedReader(SAUZEN_PATH)) {
 			for (String regel; (regel = reader.readLine()) != null;) {
-				long id = Long.parseLong(regel.split(",")[0]);
-				String naam = regel.split(",")[1];
-				int positieTweedeKomma = regel.indexOf(",", regel.indexOf(naam));
-				List<String> ingredienten = Arrays.asList(
-						regel.substring(positieTweedeKomma + 1).split(","));
-				sauzen.add(new Saus(id, naam, ingredienten)); 
+				if (!regel.isEmpty()) {		// blanco regel overslaan
+					String[] onderdelen = regel.split(",");
+					if (onderdelen.length < 2) {
+						String fout = SAUZEN_PATH + ":" + regel +" bevat minder dan 2 onderdelen";
+						LOGGER.error(fout);
+						throw new SausRepositoryException(fout);
+					}
+					try {
+						long id = Long.parseLong(onderdelen[0]);
+						String naam = onderdelen[1];
+						Saus saus = new Saus(id, naam);
+						for (int index = 2; index < onderdelen.length; index++) {
+							saus.addIngredient(onderdelen[index]);
+						}
+						sauzen.add(saus);
+					} catch (NumberFormatException ex) {
+						String fout = SAUZEN_PATH + ":" + regel + " bevat verkeerd id";
+						LOGGER.error(fout, ex);
+						throw new SausRepositoryException(fout);
+					}
+				}
 			}
-			return sauzen;
 		} catch (IOException ex) {
-			String fout = "kan sauzen niet lezen";
+			String fout = "Fout bij lezen " + SAUZEN_PATH;
 			LOGGER.error(fout, ex);
 			throw new SausRepositoryException(fout);
 		}
+		return sauzen;
 	}
-
 }

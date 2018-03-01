@@ -11,11 +11,11 @@ import be.vdab.frituurfrida.services.SausService;
 
 public class SausControllerTest {
 	private SausController controller;
-	private SausService dummySausService;
+//	private SausService dummySausService;
 	@Before
 	public void before() {
-		dummySausService = Mockito.mock(SausService.class);
-		controller = new SausController(dummySausService);
+//		dummySausService = Mockito.mock(SausService.class);
+		controller = new SausController(Mockito.mock(SausService.class));
 	}
 	@Test
 	public void sauzenWerktSamenMetDeJuisteJSP() {

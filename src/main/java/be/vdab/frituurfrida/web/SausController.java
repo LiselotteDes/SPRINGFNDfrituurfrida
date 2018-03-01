@@ -1,9 +1,5 @@
 package be.vdab.frituurfrida.web;
-import be.vdab.frituurfrida.entities.Saus;
 import be.vdab.frituurfrida.services.SausService;
-
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +15,14 @@ class SausController {
 //			new Saus(3L, "mosterd", Arrays.asList("mosterdzaadjes")),
 //			new Saus(4L, "tartare", Arrays.asList("mayo", "kruiden")),
 //			new Saus(5L, "vinaigrette", Arrays.asList("olie", "azijn")));
-	private List<Saus> sauzen;
+//	private List<Saus> sauzen;
 	private final SausService sausService;
 	SausController(SausService sausService) {
 		this.sausService = sausService;
 	}
 	@GetMapping
 	ModelAndView sauzen() {
-		sauzen = sausService.findAll();
-		return new ModelAndView(SAUZEN_VIEW, "sauzen", sauzen);
+//		sauzen = sausService.findAll();
+		return new ModelAndView(SAUZEN_VIEW, "sauzen", sausService.findAll());
 	}
 }
