@@ -1,14 +1,21 @@
 package be.vdab.frituurfrida.web;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import be.vdab.frituurfrida.services.SausService;
 
 public class SausControllerTest {
 	private SausController controller;
+	private SausService dummySausService;
 	@Before
 	public void before() {
-		controller = new SausController();
+		dummySausService = Mockito.mock(SausService.class);
+		controller = new SausController(dummySausService);
 	}
 	@Test
 	public void sauzenWerktSamenMetDeJuisteJSP() {

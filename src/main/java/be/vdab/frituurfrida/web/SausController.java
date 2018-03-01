@@ -19,12 +19,14 @@ class SausController {
 //			new Saus(3L, "mosterd", Arrays.asList("mosterdzaadjes")),
 //			new Saus(4L, "tartare", Arrays.asList("mayo", "kruiden")),
 //			new Saus(5L, "vinaigrette", Arrays.asList("olie", "azijn")));
-	private final List<Saus> sauzen;
+	private List<Saus> sauzen;
+	private final SausService sausService;
 	SausController(SausService sausService) {
-		this.sauzen = sausService.findAll();
+		this.sausService = sausService;
 	}
 	@GetMapping
 	ModelAndView sauzen() {
+		sauzen = sausService.findAll();
 		return new ModelAndView(SAUZEN_VIEW, "sauzen", sauzen);
 	}
 }
