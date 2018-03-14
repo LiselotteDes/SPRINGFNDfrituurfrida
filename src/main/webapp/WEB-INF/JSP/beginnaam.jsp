@@ -23,7 +23,10 @@
 	<c:if test="${not empty snacks}">
 		<ul>
 			<c:forEach items="${snacks}" var="snack">
-				<li>${snack.naam}</li>
+				<spring:url value="/snacks/{id}/wijzigen" var="url">
+					<spring:param name="id" value="${snack.id}"/>
+				</spring:url>
+				<li><a href="${url}">${snack.naam}</a></li>
 			</c:forEach>
 		</ul>
 	</c:if>
