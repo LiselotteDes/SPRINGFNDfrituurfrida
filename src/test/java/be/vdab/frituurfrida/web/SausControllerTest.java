@@ -15,7 +15,7 @@ public class SausControllerTest {
 	@Before
 	public void before() {
 //		dummySausService = Mockito.mock(SausService.class);
-		controller = new SausController(Mockito.mock(SausService.class));
+		controller = new SausController(Mockito.mock(SausService.class), Mockito.mock(RaadDeSausSpel.class));
 	}
 	@Test
 	public void sauzenWerktSamenMetDeJuisteJSP() {
