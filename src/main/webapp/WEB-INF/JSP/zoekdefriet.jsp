@@ -6,7 +6,7 @@
 <html lang="nl">
 <head>
 	<c:import url="/WEB-INF/JSP/head.jsp">
-		<c:param name="title" value="Zoek de friet spel"/>
+		<c:param name="title" value="Zoek de friet"/>
 	</c:import>
 </head>
 <body>
