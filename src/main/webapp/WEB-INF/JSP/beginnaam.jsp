@@ -1,13 +1,15 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@taglib prefix="vdab" uri="http://vdab.be/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-	<c:import url="head.jsp"><c:param name="title" value="Snacks (begin naam)"/></c:import>
+	<vdab:head title="Snacks (begin naam)"/>
 </head>
 <body>
+	<vdab:menu/>
 	<h1>Snacks (begin naam)</h1>
 	<c:url value="/snacks" var="url"/>
 	

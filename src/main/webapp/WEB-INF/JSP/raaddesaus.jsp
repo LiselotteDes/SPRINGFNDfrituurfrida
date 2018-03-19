@@ -1,13 +1,15 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>	<%-- Niet nodig! --%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@taglib prefix="vdab" uri="http://vdab.be/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>	<%-- Niet nodig! --%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-	<c:import url="/WEB-INF/JSP/head.jsp"><c:param name="title" value="Saus Raden"/></c:import>
+	<vdab:head title="Saus raden"/>
 </head>
 <body>
+	<vdab:menu/>
 	<h1>Saus raden</h1>
 	<c:choose>
 		<c:when test="${spel.gewonnen}">

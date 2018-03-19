@@ -23,7 +23,7 @@ class SnackController {
 	SnackController(SnackService snackService) {
 		this.snackService = snackService;
 	}
-	@GetMapping
+	@GetMapping("alfabet")
 	ModelAndView beginletters() {
 		return new ModelAndView(ALFABET_VIEW, "alfabet", ALFABET);
 	}
