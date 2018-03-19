@@ -36,7 +36,8 @@ class SausController {
 				.addObject(new RaadDeSausForm());
 	}
 	private final static String REDIRECT_URL_NA_RADEN = "redirect:/sauzen/raaddesaus";
-	@PostMapping("raaddesaus")
+//	@PostMapping("raaddesaus")	// Zo had ik het eerst en dit werkte ook ??
+	@PostMapping(value="raaddesaus", params="letter")
 	String raden(RaadDeSausForm form) {
 		this.raadDeSausSpel.raadLetter(form.getLetter());
 		return REDIRECT_URL_NA_RADEN;

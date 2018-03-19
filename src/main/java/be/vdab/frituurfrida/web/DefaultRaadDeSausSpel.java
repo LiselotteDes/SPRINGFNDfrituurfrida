@@ -52,24 +52,33 @@ class DefaultRaadDeSausSpel implements RaadDeSausSpel, Serializable {
 	}
 	@Override
 	public void raadLetter(char letter) {
-		boolean geraden = false;
-		char[] puntjesArray = sausMetPuntjes.toCharArray();
-		for (int i=0; i!= saus.length(); i++) {
-			if (letter == saus.charAt(i)) {
-				puntjesArray[i] = letter;
-				geraden = true;
-			}
-		}
-		if (geraden) {
-			sausMetPuntjes = new String(puntjesArray);
-//			if (! sausMetPuntjes.chars().anyMatch(karakter -> karakter == '.')) {
-//				gewonnen = true;
+//		boolean geraden = false;
+//		char[] puntjesArray = sausMetPuntjes.toCharArray();
+//		for (int i=0; i!= saus.length(); i++) {
+//			if (letter == saus.charAt(i)) {
+//				puntjesArray[i] = letter;
+//				geraden = true;
 //			}
-		} else {
-//			if (++aantalVerkeerdePogingen == MAX_BEURTEN) {
-//				verloren = true;
-//			}
+//		}
+//		if (geraden) {
+//			sausMetPuntjes = new String(puntjesArray);
+////			if (! sausMetPuntjes.chars().anyMatch(karakter -> karakter == '.')) {
+////				gewonnen = true;
+////			}
+//		} else {
+////			if (++aantalVerkeerdePogingen == MAX_BEURTEN) {
+////				verloren = true;
+////			}
+//			aantalVerkeerdePogingen++;
+//		}
+		int letterIndex = saus.indexOf(letter);
+		if (letterIndex == -1) {
 			aantalVerkeerdePogingen++;
+		} else {
+			do {
+				sausMetPuntjes.setCharAt(letterIndex, letter);
+				letterIndex = saus.indexOf(letter, letterIndex + 1);
+			} while (letterIndex != -1);
 		}
 	}
 	@Override
